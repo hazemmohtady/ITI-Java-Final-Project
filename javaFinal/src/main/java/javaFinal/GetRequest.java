@@ -34,24 +34,28 @@ public class GetRequest {
 	          client.send(request, BodyHandlers.ofString());
 
 	    String x=response.body();
-	    ArrayList<String> y=new ArrayList<String>();
-	    Scanner sc = new Scanner(x).useDelimiter(",");
+	    
+	   ArrayList<String> y=new ArrayList<String>();
+	    Scanner sc = new Scanner(x).useDelimiter("\",\"");
 	    while (sc.hasNext()) {
 	    	y.add(sc.next());
 	    }
+	    y.set(0,y.get(0).substring(2));
+	    y.set(y.size()-1,y.get(y.size()-1).substring(0,1));
+	    
 	    List<String> a=new ArrayList<String>();
 	    List<Integer> b=new ArrayList<Integer>();
-	    for(int i=0;i<(y.size()/2)-4;i++) {
+	    for(int i=0;i<(y.size()/2);i++) {
 	    	a.add(y.get(i));
 	    }
-	    for(int i=1542;i<y.size();i++) {
-	    	b.add(Integer.parseInt(y.get(i).substring(1,2)));
+	    for(int i=(y.size()/2);i<y.size();i++) {
+	    	b.add(Integer.parseInt(y.get(i)));
            
 	    	
 	    	
 	    }
 	   
-	    PieChart chart =new PieChartBuilder().width(800).height(600).title("Try Xchart").build(); //create chart
+	    PieChart chart =new PieChartBuilder().width(800).height(600).title("Most Demanding companies").build(); //create chart
 		b.size();
 		for(int i=0; i<b.size(); i++) {
 		chart.addSeries(a.get(i), b.get(i));
@@ -59,7 +63,7 @@ public class GetRequest {
 		}
 		new SwingWrapper(chart).displayChart();
 	    
-	    
+	   
 	    
 	    
 	    
@@ -78,22 +82,24 @@ public class GetRequest {
 
 	    String x=response.body();
 	    ArrayList<String> y=new ArrayList<String>();
-	    Scanner sc = new Scanner(x).useDelimiter(",");
+	    Scanner sc = new Scanner(x).useDelimiter("\",\"");
 	    while (sc.hasNext()) {
 	    	y.add(sc.next());
 	    }
+	    y.set(0,y.get(0).substring(2));
+	    y.set(y.size()-1,y.get(y.size()-1).substring(0,1));
 	    List<String> a=new ArrayList<String>();
 	    List<Integer> b=new ArrayList<Integer>();
-	    for(int i=0;i<2991;i++) {
+	    for(int i=0;i<y.size()/2;i++) {
 	    	a.add(y.get(i));
 	    }
-	    for(int i=2992;i<y.size();i++) {
-	    	b.add(Integer.parseInt(y.get(i).substring(1,2)));
+	    for(int i=y.size()/2;i<y.size();i++) {
+	    	b.add(Integer.parseInt(y.get(i)));
            
 	    	
 	    	
 	    }
-	    //System.out.println(y.get(2992));
+	    
 	   
 	  CategoryChart chart = new CategoryChartBuilder().width(800).height(600).title("Popular Job Titles").xAxisTitle("Job Titles").yAxisTitle("Count").build();
       b.size();
@@ -120,25 +126,28 @@ public class GetRequest {
 	          client.send(request, BodyHandlers.ofString());
 
 	    String x=response.body();
+	    
 	    ArrayList<String> y=new ArrayList<String>();
-	    Scanner sc = new Scanner(x).useDelimiter(",");
-	    while (sc.hasNext()) {
+	    Scanner sc = new Scanner(x).useDelimiter("\",\"");
+	 while (sc.hasNext()) {
 	    	y.add(sc.next());
 	    }
-	    List<String> a=new ArrayList<String>();
+	 y.set(0,y.get(0).substring(2));
+	    y.set(y.size()-1,y.get(y.size()-1).substring(0,1));
+	
+	      List<String> a=new ArrayList<String>();
 	    List<Integer> b=new ArrayList<Integer>();
 	    for(int i=0;i<y.size()/2;i++) {
 	    	a.add(y.get(i));
-	    	//System.out.println(y.get(i));
+	    	
 	    }
 	    for(int i=y.size()/2;i<y.size();i++) {
-	    	b.add(Integer.parseInt(y.get(i).substring(1,2)));
-	    	//System.out.println(y.get(i).substring(1,2));
+	    	b.add(Integer.parseInt(y.get(i)));
+	    	
 	    	
 	    	
 	    }
-	    System.out.println(y.size());
-	    System.out.println(a.size());
+	    
 	   
 	  CategoryChart chart = new CategoryChartBuilder().width(800).height(600).title("Popular Areas").xAxisTitle("Location").yAxisTitle("Count").build();
       b.size();
@@ -184,9 +193,9 @@ public class GetRequest {
 		//showTable("http://localhost:8090/mostDemanding");   //show most demanding companies
 		//showPieChart("http://localhost:8090/companiesPieChart");//show pie chart for the previous step
 		//showTable("http://localhost:8090/popularJobs");      //show most popular jobs
-		//showBarChartJobs("http://localhost:8090/barChartJobs");       //show bar chart for the previous step
+		showBarChartJobs("http://localhost:8090/barChartJobs");       //show bar chart for the previous step
 		//showTable("http://localhost:8090/popularAreas");     //show most popular area
-		showBarChartAreas("http://localhost:8090/barChartAreas");   //show bar chart for the previous step
+		//showBarChartAreas("http://localhost:8090/barChartAreas");   //show bar chart for the previous step
 		//showTable("http://localhost:8090/popularSkills");     //show most popular skills
 		
 		
